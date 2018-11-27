@@ -116,4 +116,13 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectChildrenParallelCategory" resultType="com.mmall.pojo.Category" parameterType="integer">
+  SELECT
+    <include refid="Base_Column_List"/>
+    from
+    mmall_category
+    WHERE
+    parent_id = #{parentId}
+  </select>
 </mapper>

@@ -29,14 +29,14 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.mmall.pojo.User" >
-    insert into mmall_user (id, username, password, 
+    insert into mmall_user (id, username, password,
       email, phone, question, 
       answer, role, create_time, 
       update_time)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
       #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER},now(),
-     now()
+     now())
   </insert>
   <insert id="insertSelective" parameterType="com.mmall.pojo.User" >
     insert into mmall_user
@@ -159,7 +159,7 @@
       where username = #{userName}
   </select>
 
-  <select id="selectLogin" resultType="BaseResultMap" parameterType="map">
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
     select
     <include refid="Base_Column_List"/>
     from mmall_user
@@ -177,7 +177,7 @@
   <select id="selectQuestionByUserName" parameterType="string" resultType="string">
     select question
     from mmall_user
-    where usernmae = #{username}
+    where username = #{username}
   </select>
   
   <select id="checkAnswer" parameterType="map" resultType="int">
@@ -187,7 +187,23 @@
     and question = #{question}
     and answer = #{answer}
   </select>
+
+  <select id="checkPassword" parameterType="map" resultType="int">
+    select count(1)
+    from mmall_user
+    where id = #{id}
+    and password = #{oldPassworod};
+
+  </select>
+  <select id="checkEmailByUserId" resultType="int" parameterType="map">
+    select COUNT(1)
+    from mmall_user
+    where id!=#{id}
+    and email = #{email}
+
+  </select>
+
   <update id="updatePasswordByUserName" parameterType="map">
-    update mmall_user set password = #{newPassword} where username = #{username}
+    update mmall_user set password = #{md5Password} where username = #{username}
   </update>
 </mapper>
