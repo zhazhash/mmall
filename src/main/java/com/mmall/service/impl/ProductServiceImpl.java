@@ -202,6 +202,15 @@ public class ProductServiceImpl implements IProductService{
         return ServerResponse.createBySuccess(productDetailVo);
     }
 
+    /**
+     * 商品列表
+     * @param keyword
+     * @param categoryId
+     * @param pageNum
+     * @param pageSize
+     * @param orderBy
+     * @return
+     */
     @Override
     public ServerResponse getProductByKeywordCategory(String keyword, Integer categoryId, int pageNum, int pageSize, String orderBy) {
         List<Integer> categoryIdList = Lists.newArrayList();
