@@ -232,7 +232,7 @@ public class UserServiceImpl implements IUserService {
 
     /**
      * 验证用户是否是管理员
-     * @param user
+     * @param
      * @return
      */
     public ServerResponse checkAdminRole(HttpSession session ){
@@ -241,7 +241,7 @@ public class UserServiceImpl implements IUserService {
             return  ServerResponse.createByErrorMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录");
         }
         if(user != null && user.getRole().intValue()  == Const.Role.ROLE_ADMIN ){
-            ServerResponse.createBySuccess();
+            return ServerResponse.createBySuccess();
         }
         return  ServerResponse.createByErrorMessage("您无权此操作");
 

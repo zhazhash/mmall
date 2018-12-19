@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Set;
 /**
  * Created by Administrator on 2018/11/26.
  */
+@Service
 public class ICategoryServiceImpl  implements ICategoryService{
     @Autowired
     private CategoryMapper categoryMapper;
@@ -38,7 +40,7 @@ public class ICategoryServiceImpl  implements ICategoryService{
         category.setStatus(true);
         int intCount = categoryMapper.insert(category);
         if(intCount > 0){
-            return  ServerResponse.createBySuccess();
+            return  ServerResponse.createBySuccessMessage("添加品类成功");
         }
         return  ServerResponse.createByErrorMessage("添加品类失败");
 
@@ -56,10 +58,10 @@ public class ICategoryServiceImpl  implements ICategoryService{
         }
         Category category = new Category();
         category.setName(categoryName);
-        category.setParentId(categoryId);
+        category.setId(categoryId);
         int intCount = categoryMapper.updateByPrimaryKeySelective(category);
         if(intCount > 0){
-            return ServerResponse.createBySuccess();
+            return ServerResponse.createBySuccessMessage("修改品类成功");
         }
         return ServerResponse.createByErrorMessage("修改品类失败");
     }
