@@ -36,7 +36,6 @@ public class UserServiceImpl implements IUserService {
         if(resultCount == 0){
             return  ServerResponse.createByErrorMessage("用户名为空");
         }
-        //TODO  密码登录MD5
         password = MD5Util.MD5EncodeUtf8(password);
         User user = userMapper.selectLogin(userName,password);
         if(user == null){
