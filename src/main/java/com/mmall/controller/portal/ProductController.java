@@ -25,7 +25,10 @@ public class ProductController {
     }
     @RequestMapping("list")
     @ResponseBody
-    public ServerResponse list(@RequestParam(value = "keyword" , required = false)String keyword,@RequestParam(value = "categoryId" , required = false)Integer categoryId,@RequestParam(value = "pageNum" ,defaultValue = "1") int pageNum , @RequestParam(value = "pageSize" ,defaultValue = "10")int pageSize){
-        return  iProductService.getProductByKeywordCategory(keyword,categoryId,pageNum,pageSize);
+    public ServerResponse list(@RequestParam(value = "keyword" , required = false)String keyword,
+                               @RequestParam(value = "categoryId" , required = false)Integer categoryId,
+                               @RequestParam(value = "pageNum" ,defaultValue = "1") int pageNum ,
+                               @RequestParam(value = "pageSize" ,defaultValue = "10")int pageSize,@RequestParam(value = "orderBy",defaultValue = "") String orderBy){
+        return  iProductService.getProductByKeywordCategory(keyword,categoryId,pageNum,pageSize,orderBy);
     }
 }
