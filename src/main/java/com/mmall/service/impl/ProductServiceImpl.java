@@ -223,16 +223,16 @@ public class ProductServiceImpl implements IProductService{
                 PageHelper.startPage(pageNum,pageSize);
                 List<ProductDetailVo> productDetailVos = Lists.newArrayList();
                 PageInfo pageInfo = new PageInfo(productDetailVos);
-                ServerResponse.createBySuccess(pageInfo);
+                return ServerResponse.createBySuccess(pageInfo);
             }
-            categoryIdList = (List<Integer>) iCategoryService.selectCategoryAndDeepChildrenById(category.getId()).getData();
+            categoryIdList = (List<Integer>) iCategoryService.selectCategoryAndDeepChildrenById(categoryId).getData();
         }
         if(StringUtils.isNotBlank(keyword)){
             keyword = new StringBuffer("%").append(keyword).append("%").toString();
         }
         PageHelper.startPage(pageNum,pageSize);
         if(Const.ProductListOrderBy.PRICE_ASC_DESC.contains(orderBy)){
-             PageHelper.orderBy(orderBy.replace("_"," "));
+             PageHelper.orderBy(orderBy.replace("_"," ")); //动态排序
         }
         List<Product> productList = productMapper.selectByNameAndCagegoryIds(StringUtils.isBlank(keyword)? null :keyword,categoryIdList.size() == 0 ? null:categoryIdList);
         List<ProductListVo> productListVoList = Lists.newArrayList();
