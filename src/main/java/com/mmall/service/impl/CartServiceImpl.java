@@ -2,6 +2,7 @@ package com.mmall.service.impl;
 
 import com.google.common.collect.Lists;
 import com.mmall.common.Const;
+import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.dao.CartMapper;
 import com.mmall.dao.ProductMapper;
@@ -38,6 +39,9 @@ public class CartServiceImpl  implements ICartService{
      */
     @Override
     public ServerResponse add(Integer productId, Integer userId, Integer count) {
+        if(productId == null || count == null){
+            return  ServerResponse.createByErrorMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(),ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+        }
       Cart cart = cartMapper.selectCartByUserIdProductId(productId,userId); //查看商品是否为空
       if(cart == null ){
           Cart cartItem = new Cart();
