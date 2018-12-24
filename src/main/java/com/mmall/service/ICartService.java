@@ -7,4 +7,14 @@ import com.mmall.common.ServerResponse;
  */
 public interface ICartService {
     ServerResponse add(Integer productId, Integer userId, Integer count);
+
+    ServerResponse update(Integer productId, Integer userId, Integer count);
+
+    ServerResponse deleteProduct(String productIds, Integer userId);
+
+    ServerResponse list(Integer userId);
+
+    ServerResponse selectOrUnSelect(Integer userId, Integer productId, int checked);
+
+    ServerResponse selectCartProductCount(Integer userId);
 }
