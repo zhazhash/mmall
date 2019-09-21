@@ -56,7 +56,7 @@ public class ShippingController {
 
     @RequestMapping("select")
     @ResponseBody
-    public ServerResponse select(HttpSession session,String shippingId){
+    public ServerResponse select(HttpSession session,Integer shippingId){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if(user == null){
             return ServerResponse.createByErrorMessage(ResponseCode.NEED_LOGIN.getCode(),"请您先登录");

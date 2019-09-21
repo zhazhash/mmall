@@ -20,9 +20,9 @@ public interface ShippingMapper {
 
     int deleteByShipIdAndUserId(@Param("userId") Integer userId, @Param("shippingId")Integer shippingId);
 
-    int updateShippingByUserId( @Param("shipping")Shipping shipping);
+    int updateShippingByUserId(Shipping shipping);
 
-    Shipping selectByUserIdAndShippingId(@Param("userId")Integer userId,@Param("shippingId") String shippingId);
+    Shipping selectByUserIdAndShippingId(@Param("userId")Integer userId,@Param("shippingId") Integer shippingId);
 
     List<Shipping> selectByUserId(Integer userId);
 }

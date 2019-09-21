@@ -40,7 +40,7 @@
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, 
       #{receiverPhone,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, #{receiverProvince,jdbcType=VARCHAR}, 
       #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
-      #{receiverZip,jdbcType=VARCHAR},now(), now()}
+      #{receiverZip,jdbcType=VARCHAR},now(), now()
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mmall.pojo.Shipping" >
@@ -181,7 +181,7 @@
   </delete>
   <update id="updateShippingByUserId" parameterType="com.mmall.pojo.Shipping">
     update mmall_shipping
-    set  receiver_name = #{receiverName,jdbcType=VARCHAR},
+    set receiver_name = #{receiverName,jdbcType=VARCHAR},
       receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
       receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
       receiver_province = #{receiverProvince,jdbcType=VARCHAR},
@@ -195,6 +195,7 @@
   <select id="selectByUserIdAndShippingId" parameterType="map" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List"/>
+    FROM  mmall_shipping
      WHERE
       user_id =#{userId} and id =#{shippingId}
   </select>

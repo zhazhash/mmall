@@ -56,7 +56,7 @@ public class ShippingSercieImpl implements IShippingService {
     }
 
     @Override
-    public ServerResponse select(Integer userId, String shippingId) {
+    public ServerResponse select(Integer userId, Integer shippingId) {
         if (userId != null && shippingId != null) {
             Shipping shipping = shippingMapper.selectByUserIdAndShippingId(userId,shippingId);
             if(shipping != null){

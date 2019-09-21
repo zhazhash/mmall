@@ -13,7 +13,7 @@ public interface IShippingService {
 
     ServerResponse update(Integer userId, Shipping shipping);
 
-    ServerResponse select(Integer userId, String shippingId);
+    ServerResponse select(Integer userId, Integer shippingId);
 
     ServerResponse getList(Integer userId, int pageNum, int pageSize);
 }
